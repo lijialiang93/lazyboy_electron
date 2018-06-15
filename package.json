@@ -1,0 +1,32 @@
+{
+  "name": "lazyboy",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "dist": "ELECTRON_MIRROR=https://npm.taobao.org/mirrors/electron/ electron-builder -wm"
+  },
+  "keywords": [],
+  "author": "JialiangLi",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^2.0.0",
+    "electron-builder": "^20.15.1"
+  },
+  "dependencies": {
+    "ip": "^1.1.5"
+  },
+  "build": {
+    "appId": "com.lazyboy.app",
+    "productName": "Lazyboy",
+    "win": {
+      "target": "nsis",
+      "icon": "./assets/computer.ico"
+    },
+    "mac": {
+      "target": "dmg",
+      "icon": "./assets/computer.icns"
+    }
+  }
+}
