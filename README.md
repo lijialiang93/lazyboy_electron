@@ -8,4 +8,4 @@ npm install
 npm start
 ```
 
-Icon made by Freepik from www.flaticon.com 
+App icon made by Freepik from www.flaticon.com 
