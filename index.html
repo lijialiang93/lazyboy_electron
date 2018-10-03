@@ -14,15 +14,15 @@
 
     <main class="container">
         <div class="row">
-            <img src='./public/img/computer.png' />
+            <img src='./public/img/astronaut.png' />
             <div class="row" id='input'>
                 <div class="input-group col-10">
                     <div class="input-group-prepend">
-                        <span class="input-group-text" id="basic-addon1">Path</span>
+                        <span class="input-group-text" id="basic-addon1">Path(s)</span>
                     </div>
-                    <input type="text" class="form-control" id='path' readonly='true'>
-                    <div class="input-group-append">
-                        <button id='browse' class='btn btn-dark'>...</button>
+                    <ul class='list-group border border-dark' id='pathList'></ul>
+                    <div class='input-group-append'>
+                        <button id='browse' class='btn btn-light border border-dark'>...</button>
                     </div>
                 </div>
                 <button id='stream' class="btn btn-primary col-2">Play</button>
@@ -30,10 +30,10 @@
                 <button id='stop' class="btn btn-danger d-none">Stop</button>
 
                 <div class="col-12 mt-4">
-                    <span>
+                    <span id='info-text'>
                         <small>
                             <strong>
-                                Open this link in your mobile browser:&nbsp
+                                Open this link on your phone or tablet:&nbsp
                             </strong>
                         </small>
                     </span>

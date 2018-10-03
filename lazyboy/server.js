@@ -5,8 +5,8 @@ const os = require('os');
 const path = require('path');
 const bodyParser = require("body-parser");
 const exphbs = require('express-handlebars');
-let videoPath = undefined;
 let ip = undefined;
+const port = 9527;
 
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
@@ -16,8 +16,22 @@ app.set('view engine', 'handlebars');
 
 app.get('/', function (req, res) {
     if (ip) {
-        let url = 'http://' + ip + ':3000/video';
-        res.render('player', { url: url });
+        let videos = [];
+        for (let i = 0; i < videoPaths.length; i++) {
+            let videoPath = videoPaths[i];
+            let encodedPath = encodeURI(videoPath);
+            let baseURL = `http://${ip}:${port}/video?path=`
+            let video = {
+                url: baseURL + encodedPath,
+                title: videoPath,
+            }
+
+            videos.push(video);
+        }
+
+        res.render('player', {
+            videos: videos,
+        });
     }
     else {
         res.render('error', { errorMsg: 'No File Selected' });
@@ -25,15 +39,15 @@ app.get('/', function (req, res) {
 })
 
 app.post('/stream', function (req, res) {
-    videoPath = req.body.path;
+    videoPaths = req.body.paths;
     ip = req.body.ip;
     res.sendStatus(200);
 })
 
 app.get('/video', function (req, res) {
-    if (videoPath !== undefined) {
+    if (videoPaths !== undefined) {
         try {
-            const path = videoPath;
+            const path = decodeURI(req.query.path);
             const stat = fs.statSync(path)
             const fileSize = stat.size
             const range = req.headers.range
@@ -68,7 +82,7 @@ app.get('/video', function (req, res) {
     }
 })
 
-app.listen(3000, () => {
+app.listen(port, () => {
     console.log("We've now got a server!");
-    console.log("Your routes will be running on http://localhost:3000");
+    console.log(`Your routes will be running on http://localhost:${port}`);
 });

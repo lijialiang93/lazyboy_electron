@@ -1,6 +1,6 @@
 {
   "name": "lazyboy",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "",
   "main": "main.js",
   "scripts": {
@@ -22,11 +22,11 @@
     "productName": "Lazyboy",
     "win": {
       "target": "nsis",
-      "icon": "./assets/computer.ico"
+      "icon": "./assets/astronaut.ico"
     },
     "mac": {
       "target": "dmg",
-      "icon": "./assets/computer.icns"
+      "icon": "./assets/astronaut.icns"
     }
   }
 }
